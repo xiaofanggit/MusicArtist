@@ -14,7 +14,7 @@
 Route::get('/', function () {
 
     $query = http_build_query([
-        'client_id' => '4',
+        'client_id' => '1',
         'redirect_uri' => 'http://tripbuilderclient.dev/callback',
         'response_type' => 'code',
         'scope' => ''
@@ -28,8 +28,8 @@ Route::get('/callback', function (Illuminate\Http\Request $request) {
 
     $response = $http->post('http://tripbuilder.dev/oauth/token', [
         'form_params' => [
-            'client_id' => '4',
-            'client_secret' => 'X4yse2MGKxFd3gy2ORaQApehXjYCgTkxe7bBSaKE',
+            'client_id' => '1',
+            'client_secret' => 'c9dbGcg7Ej7D6De1qG7MSNJobhBEP4YV5qonhOh1',
             'grant_type' => 'authorization_code',
             'redirect_uri' => 'http://tripbuilderclient.dev/callback',
             'code' => $request->code,
