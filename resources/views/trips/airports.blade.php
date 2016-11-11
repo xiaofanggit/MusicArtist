@@ -9,7 +9,8 @@
                             <a class="airport pointer" id="<?php echo $letter;?>"><?php echo $letter;?></a>
                     <?php }?>
                 </div>
-                <input type="hidden" name="token" value="{{Session::get('access_token')}}">
+                <input type="hidden" id="token" value="{{Session::get('access_token')}}">
+                <input type="hidden" id="api_url" value="{{Session::get('api_url')}}">
                 <div id="list-area"><div>  
             </div>
     </div>

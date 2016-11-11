@@ -36,7 +36,8 @@ Route::get('/callback', function (Illuminate\Http\Request $request) {
         ],
     ]);
    $token =  json_decode((string) $response->getBody(), true);
-   Session::set('access_token', $token['access_token']);  
+   Session::set('access_token', $token['access_token']); 
+   Session::set('api_url', config('customer.api_url')); 
   return $token;
 });
 
@@ -44,10 +45,10 @@ Route::get('/airports', function(){
     return view('trips.airports');
 });
 
-Route::get('/flights', function(){
+Route::get('/flights/{id}', function(){
     return view('trips.flights');
 });
 
-Route::get('/add-flight', function(){
-    return view('trips.add-flight');
+Route::get('/addflights', function(){
+    return view('trips.addflights');
 });
