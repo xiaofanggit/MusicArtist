@@ -36,13 +36,14 @@ Route::get('/callback', function (Illuminate\Http\Request $request) {
         ],
     ]);
    $token =  json_decode((string) $response->getBody(), true);
-   Session::set('access_token', $token['access_token']);
-  
-   //return view('trips.airports', ['token' => $token['access_token'], 'type' => $token['token_type']]);
+   Session::set('access_token', $token['access_token']);  
   return $token;
 });
 
-Route::get('/airports', function(){    
-    //return view('trips.airportsList');
+Route::get('/airports', function(){
     return view('trips.airports');
+});
+
+Route::get('/flights', function(){
+    return view('trips.flights');
 });
