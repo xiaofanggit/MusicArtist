@@ -13,5 +13,11 @@
                 <div id="list-area"><div>  
             </div>
     </div>
+    <div class="row">            
+        <a onclick="addFlight()">Add fligfht</a>
+    </div>
+    <div class="row">            
+        <a onclick="deleteFlight()">Delete fligfht</a>
+    </div>
 </div>
 @endsection

@@ -47,3 +47,7 @@ Route::get('/airports', function(){
 Route::get('/flights', function(){
     return view('trips.flights');
 });
+
+Route::get('/add-flight', function(){
+    return view('trips.add-flight');
+});
