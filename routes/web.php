@@ -11,27 +11,33 @@
 |
 */
 
-Route::get('/', function () {
+/**
+ * The route to get API token from http://tripbuilderclient.dev
+ */
+Route::get('/getAPIToken', function () {
 
     $query = http_build_query([
         'client_id' => '1',
-        'redirect_uri' => 'http://tripbuilderclient.dev/callback',
+        'redirect_uri' => config('customer.client_url').'/callback',
         'response_type' => 'code',
         'scope' => ''
     ]);
 
-    return redirect('http://tripbuilder.dev/oauth/authorize?'.$query);
+    return redirect(config('customer.api_url').'/oauth/authorize?'.$query);
 });
 
+/**
+ * The call back function after get the access token from API
+ */
 Route::get('/callback', function (Illuminate\Http\Request $request) {
     $http = new \GuzzleHttp\Client;
 
-    $response = $http->post('http://tripbuilder.dev/oauth/token', [
+    $response = $http->post(config('customer.api_url').'/oauth/token', [
         'form_params' => [
             'client_id' => '1',
             'client_secret' => 'c9dbGcg7Ej7D6De1qG7MSNJobhBEP4YV5qonhOh1',
             'grant_type' => 'authorization_code',
-            'redirect_uri' => 'http://tripbuilderclient.dev/callback',
+            'redirect_uri' => config('customer.client_url').'/callback',
             'code' => $request->code,
         ],
     ]);
@@ -41,14 +47,22 @@ Route::get('/callback', function (Illuminate\Http\Request $request) {
   return $token;
 });
 
+/*Home page*/
+Route::get('/', function(){
+    return view('trips.airports');
+});
+
+/*Get airport list page*/
 Route::get('/airports', function(){
     return view('trips.airports');
 });
 
-Route::get('/flights/{id}', function(){
+/*Get flights list page*/
+Route::get('/flights', function(){
     return view('trips.flights');
 });
 
-Route::get('/addflights', function(){
+/*Add a flight into a trip*/
+Route::get('/addFlights', function(){
     return view('trips.addflights');
 });

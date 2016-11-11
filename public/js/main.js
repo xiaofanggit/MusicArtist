@@ -1,20 +1,17 @@
 /**
  * RESTFUL API URL
  */
-//api_url: http://tripbuilder.dev/api/v1/ The url of Restful API, saved at: C:\xampp\htdocs\TripBuilderClient\config\customer.php
-var api_url = $('#api_url').val(); 
+//api_url: http://tripbuilder.dev/api/v1/ . This variable was saved at: C:\xampp\htdocs\TripBuilderClient\config\customer.php
+var api_url = $('#api_url').val()+'/api/v1';
 var access_token = $('#token').val(); //The API access token 
 $(function () {
-
-    var api_url = $('input[name=api_url]').val(); //The url of Restful API
-    var access_token = $('input[name=token]').val(); //The API access token 
     /**
      * Ajax api call to display airports around the world by their Initial letter
      * 
      */
     $('.airport').click(function () {
         $.ajax({
-            url: api_url + "airports?access_token=" + access_token + "&init=" + $(this).attr('id'),
+            url: api_url + "/airports?access_token=" + access_token + "&init=" + $(this).attr('id'),
             type: "GET",
             success: function (response) {
                 //API call is not in success or no results, show nothing
@@ -46,7 +43,7 @@ $(function () {
      */
     $('.flight').click(function () {
         $.ajax({
-            url: api_url + "flights?access_token=" + access_token + "&id=" + $(this).attr('id'),
+            url: api_url + "/flights?access_token=" + access_token + "&id=" + $(this).attr('id'),
             type: "GET",
             success: function (response) {
                 //API call is not in success or no results, show nothing
@@ -56,7 +53,7 @@ $(function () {
                 }
                 var html = "<br><table class='table-striped padding-20 center-box'><tr><th>Trip ID</th><th>Flight ID</th><th colspan='2'>Source Airport Name</th><th colspan='2'>Destination Airport Name</th><th>Action</th></tr>";
                 $.each(response['flights'], function (index, p) {
-                    html += "<tr id='flight'" + p['id'] + "><td>" + p['trip_id'] + "</td><td>" + p['id'] + "</td><td colspan='2'>" + p['start_name'] + "</td>";
+                    html += "<tr id='flight" + p['id'] + "'><td>" + p['trip_id'] + "</td><td>" + p['id'] + "</td><td colspan='2'>" + p['start_name'] + "</td>";
                     html += "<td colspan=2>" + p['end_name'] + "</td><td colspan='2' class='padding-5'><a onclick='deleteFlight(" + p['id'] + ")' class='btn btn-primary delete' id='" + p['id'] + "'> Delete flight</a></td></tr>";
                 });
                 html += "</table><br>";
@@ -69,33 +66,43 @@ $(function () {
         $('.flight').removeClass('active');
         $(this).addClass('active');
     });
-
-    function deleteFlight() {
-        $.ajax({
-            url: url + 'flights',
-            type: 'delete',
-            data: {access_token: access_token, id: 23},
-            success: function (response) {
-                //API call is not in success or flight already exsit.
-                if (response['status'] != 200) {
-                    alert(response['msg']);
-                    return;
-                }
-                alert(response['msg']);
-            },
-            error: function (xhr) {
-                alert(JSON.stringify(xhr));
-            }
-        });
-    }
-
 });
+/**
+ * Add a flight into a trip
+ * @returns 
+ */
 function addFlight() {
-    $('#add[name!=tokensecurity]', this).serialize();
     $.ajax({
-        url: api_url + 'flights?access_token=' + access_token,
+        url: api_url + '/flights?access_token=' + access_token,
         type: 'post',
         data: $("#add").serialize(),
+        success: function (response) {
+            //API call is not in success or flight already exsit.
+            if (response['status'] != 200) {
+                if (response['msg'] == undefined){
+                    alert('Failed! The flight already exsit.');
+                }else{
+                    alert(response['msg']);
+                }
+                return;
+            }
+            alert(response['msg']+'You could continue adding other flight.');
+        },
+        error: function (xhr) {
+            alert(JSON.stringify(xhr));
+        }
+    });
+}
+/**
+ * Delete a trip flight
+ * @param int id: trip id
+ * @returns 
+ */
+function deleteFlight(id) {
+    $.ajax({
+        url: api_url + '/flights?access_token=' + access_token,
+        type: 'delete',
+        data: { id: id},
         success: function (response) {
             //API call is not in success or flight already exsit.
             if (response['status'] != 200) {
@@ -103,6 +110,7 @@ function addFlight() {
                 return;
             }
             alert(response['msg']);
+            $('#flight'+id).remove();
         },
         error: function (xhr) {
             alert(JSON.stringify(xhr));

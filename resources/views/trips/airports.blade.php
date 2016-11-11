@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('content')
+<!--A view for testing API CALL: API/V1/airport GET-->
 <div class="container text-center">
     <div class="row">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Airports List</div>
                 <div class='alert-success padding-10'>
                     <?php foreach (range('A', 'Z') as $letter){?>
                             <a class="airport pointer" id="<?php echo $letter;?>"><?php echo $letter;?></a>
