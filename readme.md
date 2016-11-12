@@ -1,6 +1,22 @@
-## This project call the RESTFUL API created by TripBuilder
-For example: By running http://tripbuilder.dev/oauth/authorize?client_id=4&redirect_uri=http%3A%2F%2Ftripbuilderclient.dev%2Fcallback&response_type=code&scope=, get the below token which will be used for remote API call. 
+## This is an API client project, and the provider is TripBuilder
 
-http://tripbuilderclient.dev/callback?code=uiVzrylZ3NfQg4lmAOzHiLGSgTf7DeG%2BN9cUUJWBWgY1ZxzowMm9wW0AnQjmGyFIowbMxIH3XGTE58U%2FOMUfMJtxO%2FxVb8u2iwSIeuXrKtYYVAjPN9%2FzdPg4BXkU%2FJzm0r8vnnAoBjIvx0Guw1jQ01SDVzR7%2BktX2ovwRaxAXtmi0l6cj8bjYMSaTF0yqrFNF59KYJ%2Fc5Ec%2FhN0F2ZLRl%2B7hCchyZBAseGIhrjGBSdjhKip6AZGnFWhhcsDfM0YZ3yT66oE45bAxhaVGi803cQWZYdmkZOC%2Fw89K6VYD2%2Fo68y8EBh9vDzAudkFzeTVhfhxZnyfQPxvfzE%2B0w31kGZFESkqAPjbLBBIhOQ0peaZ890BIJAdBgW%2B4esRJAIjsr0hPup95bBoW5zbQVM1H0lZ2HHBBpLTzCBP%2BMG0rPYBTapfTJEQURW2K2NwxY4TFzMW3gKsC%2FfziJM6QSfdk5FMr2Y3J9ZyZ3BHnMhm91jShcYrWZljhtjFPRDo7314WoBfTALI8EcXZD9KaHM%2FxjW%2FQv9XKd%2FvWM8Uqf%2BI9dsTcMOfr3klnU908W9cJDStuCa%2Fgt37Yxo%2BoGb0JL6nrgNOfa%2FraDI6qX5IMp%2BH937o4wQ1gq4wRYDPJuU%2Ftf69MdpI%2BnoZTixPjSiramw5crUJx9EkoEX4Sdf5to09Wqhs%3D
+## Installation
 
-http://tripbuilderclient.dev/airports
+It is similar as the project TripBuilder.
+
+1. git clone https://github.com/xiaofanggit/TripBuilderClient
+2. Create database on your MYSQL server named: trip_builder_client (or your own name.)
+3. Rename ".env.example" into ".env"
+4. Make sure the folders storage and the bootstrap/cache have writeable permission.
+5. Make sure you already install npm (https://nodejs.org/en/) and composer (https://getcomposer.org/), and also can be accessed from everywhere.
+6. Go into your project folder, for example: C:\xampp\htdocs\TripBuilderClient\ 
+ npm install (this command will install all missed components we will use for this project into folder "node_modules".)
+7. Install all missed vendor components using the below command.
+composer install
+8. Run the below two commands if you have any errors.
+php artisan key:generate
+php artisan config:clear
+9. Change the file:
+C:\xampp\htdocs\TripBuilderClient\routes\web.php
+Change all client id to the id you got from: http://tripbuilder.dev/
+Find the detailed information from: C:\xampp\htdocs\TripBuilder\miscellaneous\ScreenshotAndImportantInfo 
