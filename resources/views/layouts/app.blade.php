@@ -45,10 +45,10 @@ echo json_encode([
                             <!-- Right Side Of Navbar -->
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href='{{ url('/')}}'>Home</a></li>
+                                <li><a href='{{ url('getAPIToken')}}'>Get API Token</a></li>
                                 <li><a href='{{ url('airports')}}'>Airports List</a></li>
                                 <li><a href='{{ url('flights')}}'>Flights List</a></li>
-                                <li><a href='{{ url('addFlights')}}'>Add Flight</a></li>
-                                <li><a href='{{ url('getAPIToken')}}'>Get API Token</a></li>
+                                <li><a href='{{ url('addFlights')}}'>Add Flight</a></li>                                
                             </ul>
                         </div>
 

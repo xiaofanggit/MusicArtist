@@ -1,9 +1,9 @@
 /**
- * RESTFUL API URL
+ * The usage of RESTFUL API
  */
 //api_url: http://tripbuilder.dev/api/v1/ . This variable was saved at: C:\xampp\htdocs\TripBuilderClient\config\customer.php
 var api_url = $('#api_url').val()+'/api/v1';
-var access_token = $('#token').val(); //The API access token 
+var token = $('#token').val(); //The API access token 
 $(function () {
     /**
      * Ajax api call to display airports around the world by their Initial letter
@@ -11,8 +11,15 @@ $(function () {
      */
     $('.airport').click(function () {
         $.ajax({
-            url: api_url + "/airports?access_token=" + access_token + "&init=" + $(this).attr('id'),
+            url: api_url + "/airports",
             type: "GET",
+            data: {init : $(this).attr('id')},
+            useDefaultXhrHeader: false,
+            beforeSend : function(request) {
+                // set header
+                request.setRequestHeader("Accept","application/json");
+                request.setRequestHeader("Authorization", "Bearer " + token);
+            },
             success: function (response) {
                 //API call is not in success or no results, show nothing
                 if (response['status'] != 200 || response['airports'].length == 0) {
@@ -43,7 +50,13 @@ $(function () {
      */
     $('.flight').click(function () {
         $.ajax({
-            url: api_url + "/flights?access_token=" + access_token + "&id=" + $(this).attr('id'),
+            url: api_url + "/flights",
+            data: {id: $(this).attr('id')},
+            beforeSend : function(request) {
+                // set header
+                request.setRequestHeader("Accept","application/json");
+                request.setRequestHeader("Authorization", "Bearer " + token);
+            },
             type: "GET",
             success: function (response) {
                 //API call is not in success or no results, show nothing
@@ -73,8 +86,13 @@ $(function () {
  */
 function addFlight() {
     $.ajax({
-        url: api_url + '/flights?access_token=' + access_token,
+        url: api_url + '/flights',
         type: 'post',
+        beforeSend : function(request) {
+            // set header
+            request.setRequestHeader("Accept","application/json");
+            request.setRequestHeader("Authorization", "Bearer " + token);
+        },
         data: $("#add").serialize(),
         success: function (response) {
             //API call is not in success or flight already exsit.
@@ -100,9 +118,14 @@ function addFlight() {
  */
 function deleteFlight(id) {
     $.ajax({
-        url: api_url + '/flights?access_token=' + access_token,
+        url: api_url + '/flights',
         type: 'delete',
         data: { id: id},
+        beforeSend : function(request) {
+            // set header
+            request.setRequestHeader("Accept","application/json");
+            request.setRequestHeader("Authorization", "Bearer " + token);
+        },
         success: function (response) {
             //API call is not in success or flight already exsit.
             if (response['status'] != 200) {

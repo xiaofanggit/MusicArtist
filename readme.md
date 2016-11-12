@@ -19,4 +19,5 @@ php artisan config:clear
 9. Change the file:
 C:\xampp\htdocs\TripBuilderClient\routes\web.php
 Change all client id to the id you got from: http://tripbuilder.dev/
-Find the detailed information from: C:\xampp\htdocs\TripBuilder\miscellaneous\ScreenshotAndImportantInfo 
+Find the detailed information from: C:\xampp\htdocs\TripBuilder\miscellaneous\ScreenshotAndImportantInfo
+10. Change the config\customer.php: api_url and client_url

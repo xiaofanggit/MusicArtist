@@ -20,7 +20,7 @@ Route::get('/getAPIToken', function () {
         'client_id' => '1',
         'redirect_uri' => config('customer.client_url').'/callback',
         'response_type' => 'code',
-        'scope' => ''
+        'scope' => '*'
     ]);
 
     return redirect(config('customer.api_url').'/oauth/authorize?'.$query);
@@ -44,7 +44,7 @@ Route::get('/callback', function (Illuminate\Http\Request $request) {
    $token =  json_decode((string) $response->getBody(), true);
    Session::set('access_token', $token['access_token']); 
    Session::set('api_url', config('customer.api_url')); 
-  return $token;
+   return view('displaytoken', ['token' => $token]);
 });
 
 /*Home page*/
