@@ -21,17 +21,17 @@ class WebservicesController extends Controller
      * 
      * @para $request: string, users search string
      * 
-     * return bool: true: success, failed.
+     * return Json: true: success, false:failed.
      */
     public function getMusicArtists(Request $request)
     {
-        //Use guzzle to get json data
+        $status = config('customer.HTTP_OK');
+        $msg = config('customer.insert_success');
+		//Use guzzle to get json data
         $client = new \GuzzleHttp\Client();        
         $res = $client->get(config('customer.api_url')."term=".$request->input('term'));        
         $body = $res->getBody();
-        $obj = json_decode($body);
-        $status = config('customer.HTTP_OK');
-        $msg = config('customer.insert_success');
+        $obj = json_decode($body);        
         foreach ($obj->results as $r){
             try
             { 
