@@ -38,3 +38,4 @@ http://localhost:8000/webServices/deleteTrack?id=1
 -webservices are located at: \MusicArtist\app\Http\Controllers\WebservicesController.php
 -Models are located at: \MusicArtist\app\Model
 -Routes are located at: C:\xampp\htdocs\MusicArtist\routes\web.php
+-Database tables are located at: C:\xampp\htdocs\MusicArtist\database\migrations
