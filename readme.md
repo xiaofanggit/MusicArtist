@@ -1,7 +1,11 @@
+##About the project
 -This is a Laravel project to use the api from https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/#searchexamples
--Insert data ito DB and do some operations
+
+-Insert data into DB and do some operations
+
 Installation:
 -git clone https://github.com/xiaofanggit/MusicArtist
+
 -Rename ".env.example" into ".env"
 -Change the database name to : music_artist, and also change the host and user information
 -Make sure music_artist tables exsited.
