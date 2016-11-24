@@ -46,7 +46,7 @@ class WebservicesController extends Controller
                 );
                 //If the track not exist, insert into track table.
                 DB::table('tracks')->firstOrCreate(
-                    ['collectionID' => $r->collectionId, 'collectionName' => $r->collectionName, 'collectionPrice' => $r->collectionPrice, 'collectionArtistId', $artistId]
+                    ['collectionID' => $collectionId, 'collectionName' => $r->collectionName, 'collectionPrice' => $r->collectionPrice, 'collectionArtistId', $artistId]
                 );
             }catch (Exception $e){   
                 $status = config('constants.HTTP_BAD');
@@ -57,7 +57,9 @@ class WebservicesController extends Controller
         return \Response::json(['status' => $status, 'msg' => $msg]);
     }
     
-    public function getArtistTracks(){}
+    public function getArtistTracks(){
+        //Todo
+    }
     
     /**
      * Delete the track
