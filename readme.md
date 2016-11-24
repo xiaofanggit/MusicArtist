@@ -39,3 +39,4 @@ http://localhost:8000/webServices/deleteTrack?id=1
 -Models are located at: \MusicArtist\app\Model
 -Routes are located at: C:\xampp\htdocs\MusicArtist\routes\web.php
 -Database tables are located at: C:\xampp\htdocs\MusicArtist\database\migrations
+-Databasde schema loacted at: C:\xampp\htdocs\MusicArtist\database\music_artist.sql
