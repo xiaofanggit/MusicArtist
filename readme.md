@@ -8,9 +8,9 @@ Installation:
 
 -Rename ".env.example" into ".env"
 
--Change the database name to : music_artist, and also change the host and user information
+-Change the database name to : music_artists, and also change the host and user information
 
--Make sure music_artist tables exsited.
+-Make sure music_artists tables exsited.
 
 -Make sure the folders storage and the bootstrap/cache have writeable permission.
 
