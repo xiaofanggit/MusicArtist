@@ -32,3 +32,9 @@ php artisan config:clear
 http://localhost:8000/webServices/musicArtist
 
 http://localhost:8000/webServices/deleteTrack?id=1
+
+##Code structure
+
+-webservices are located at: \MusicArtist\app\Http\Controllers\WebservicesController.php
+-Models are located at: \MusicArtist\app\Model
+-Routes are located at: C:\xampp\htdocs\MusicArtist\routes\web.php
