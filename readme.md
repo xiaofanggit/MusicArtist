@@ -7,18 +7,28 @@ Installation:
 -git clone https://github.com/xiaofanggit/MusicArtist
 
 -Rename ".env.example" into ".env"
+
 -Change the database name to : music_artist, and also change the host and user information
+
 -Make sure music_artist tables exsited.
+
 -Make sure the folders storage and the bootstrap/cache have writeable permission.
+
 -Make sure you already install npm (https://nodejs.org/en/) and composer (https://getcomposer.org/), and also can be accessed from everywhere.
+
 -Go into your project folder, for example: C:\xampp\htdocs\MusicArtist\ 
+
  npm install (this command will install all missed components we will use for this project into folder "node_modules".)
 -Install all missed vendor components using the below command.
+
 composer install
 -Run the below two commands if you have any errors.
+
 php artisan key:generate
 php artisan config:clear
 -Run 'php artisan serve'
 -Then you could test webservices by using:
+
 http://localhost:8000/webServices/musicArtist
+
 http://localhost:8000/webServices/deleteTrack?id=1
