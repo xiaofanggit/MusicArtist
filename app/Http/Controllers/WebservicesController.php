@@ -68,7 +68,7 @@ class WebservicesController extends Controller
     
     /**
      * Delete the track
-     * @param Request $request: track id, input by users
+     * @param Request $request: id, int, track id.input by users
      */
     public function deleteTrack(Request $request){
         $result = false;
@@ -76,7 +76,7 @@ class WebservicesController extends Controller
         $msg ="";
         try
         {            
-            $result = \Response::json(Track::findOrFail($request->input('trackId'))->delete());            
+            $result = \App\Model\Track::findOrFail($request->input('id'))->delete();            
             $msg = "The track deleted successfully";
         }
         catch (Exception $e)
