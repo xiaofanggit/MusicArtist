@@ -29,11 +29,7 @@ php artisan config:clear
 -Run 'php artisan serve'
 -Then you could test webservices by using:
 
-<<<<<<< HEAD
 http://localhost:8000/webServices/musicArtist?term=jack+johnson
-=======
-http://localhost:8000/webServices/musicArtist
->>>>>>> 2dc26c84d1f2eb44d8e507a1faf16665acb86465
 
 http://localhost:8000/webServices/deleteTrack?id=1
 
@@ -44,7 +40,4 @@ http://localhost:8000/webServices/deleteTrack?id=1
 -Routes are located at: C:\xampp\htdocs\MusicArtist\routes\web.php
 -Database tables are located at: C:\xampp\htdocs\MusicArtist\database\migrations
 -Databasde schema loacted at: C:\xampp\htdocs\MusicArtist\database\music_artist.sql
-<<<<<<< HEAD
-=======
-# MusicArtist
->>>>>>> 2dc26c84d1f2eb44d8e507a1faf16665acb86465
+
