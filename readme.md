@@ -29,7 +29,7 @@ php artisan config:clear
 -Run 'php artisan serve'
 -Then you could test webservices by using:
 
-http://localhost:8000/webServices/musicArtist
+http://localhost:8000/webServices/musicArtist?term=jack+johnson
 
 http://localhost:8000/webServices/deleteTrack?id=1
 

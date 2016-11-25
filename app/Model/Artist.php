@@ -2,11 +2,12 @@
 
 namespace App\Model;
 
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
+use DB;
 
-class Artist extends Authenticatable
+class Artist extends Model
 {
-    use Notifiable;
+   //use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -14,7 +15,7 @@ class Artist extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'country', 'currency',
+        'artistId', 'artistName', 'country', 'currency',
     ];
 
     

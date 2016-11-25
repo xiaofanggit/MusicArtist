@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 class Collection extends Model
 {
-    public $fillable = ['collectionId','collectionName','collectionPrice','collectionArtistId'];
+    public $fillable = ['collectionId','collectionName','collectionArtistId','collectionPrice'];
     public function artists(){
         return $this->belongTo('App\Model\Artist');
     }

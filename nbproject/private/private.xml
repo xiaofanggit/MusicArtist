@@ -3,18 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/TripBuilderClient/public/index.php</file>
-            <file>file:/C:/xampp/htdocs/TripBuilderClient/resources/views/trips/flights.blade.php</file>
-            <file>file:/C:/xampp/htdocs/TripBuilderClient/config/database.php</file>
-            <file>file:/C:/xampp/htdocs/TripBuilderClient/resources/views/trips/addflights.blade.php</file>
-            <file>file:/C:/xampp/htdocs/TripBuilderClient/resources/views/layouts/app.blade.php</file>
-            <file>file:/C:/xampp/htdocs/TripBuilderClient/routes/web.php</file>
-            <file>file:/C:/xampp/htdocs/TripBuilderClient/config/customer.php</file>
-            <file>file:/C:/xampp/htdocs/TripBuilderClient/.env</file>
-            <file>file:/C:/xampp/htdocs/TripBuilderClient/public/js/main.js</file>
-            <file>file:/C:/xampp/htdocs/TripBuilderClient/config/app.php</file>
-            <file>file:/C:/xampp/htdocs/TripBuilderClient/resources/views/trips/airports.blade.php</file>
-            <file>file:/C:/xampp/htdocs/TripBuilderClient/config/session.php</file>
+            <file>file:/C:/xampp/htdocs/MusicArtist/routes/web.php</file>
+            <file>file:/C:/xampp/htdocs/MusicArtist/database/migrations/2016_11_09_241006_create_tracks_table.php</file>
+            <file>file:/C:/xampp/htdocs/MusicArtist/app/User.php</file>
+            <file>file:/C:/xampp/htdocs/MusicArtist/app/Model/Track.php</file>
+            <file>file:/C:/xampp/htdocs/MusicArtist/readme.md</file>
+            <file>file:/C:/xampp/htdocs/MusicArtist/app/Http/Controllers/Controller.php</file>
+            <file>file:/C:/xampp/htdocs/MusicArtist/database/migrations/2016_11_09_241006_create_collections_table.php</file>
+            <file>file:/C:/xampp/htdocs/MusicArtist/.env</file>
+            <file>file:/C:/xampp/htdocs/MusicArtist/app/Model/Collection.php</file>
+            <file>file:/C:/xampp/htdocs/MusicArtist/config/database.php</file>
+            <file>file:/C:/xampp/htdocs/MusicArtist/config/customer.php</file>
+            <file>file:/C:/xampp/htdocs/MusicArtist/app/Http/Controllers/WebservicesController.php</file>
+            <file>file:/C:/xampp/htdocs/MusicArtist/app/Model/Artist.php</file>
         </group>
     </open-files>
 </project-private>

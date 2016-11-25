@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use guzzlehttp\Client;
+use DB;
 
 /**
  * Webservices controller
@@ -32,27 +33,33 @@ class WebservicesController extends Controller
         $obj = json_decode($body);
         $status = config('customer.HTTP_OK');
         $msg = config('customer.insert_success');
-        foreach ($obj->results as $r){
-            try
-            { 
-                //Search to see if this artist already exist, if not insert
-                $artistId = DB::table('artists')->firstOrCreate(
-                    ['artistID' => $r->artistId, 'artistName' => $r->artistName, 'country' => $r->country, 'currency', $r->currency]
-                );
+        if (!empty($obj->results)){
+            foreach ($obj->results as $r){
+                try
+                {
+                    //Search to see if this artist already exist, if not insert
+                    $artist = \App\Model\Artist::firstOrCreate(
+                        ['artistId' => $r->artistId, 'artistName' => $r->artistName, 'country' => $r->country, 'currency' => $r->currency]
+                    );
+                   
+                    //If the collection not exist, insert ino collection table.
+                    $collection = \App\Model\Collection::firstOrCreate(
+                        ['collectionId' => $r->collectionId, 'collectionName' => $r->collectionName, 'collectionPrice' => $r->collectionPrice, 'collectionArtistId' => $artist->id]
+                    );
+                   
+                    //If the track not exist, insert into track table.
+                    \App\Model\Track::firstOrCreate(
+                        ['trackId' => $r->trackId, 'trackName' => $r->trackName, 'trackPrice' => $r->trackPrice, 'collectionId' => $collection->id]
+                    );
+                }catch (Exception $e){   
+                    $status = config('customer.HTTP_BAD');
+                    $msg = config('customer.insert_fail');
+                }
 
-                //If the collection not exist, insert ino collection table.
-                $collectionId = DB::table('collections')->firstOrCreate(
-                    ['collectionID' => $r->collectionId, 'collectionName' => $r->collectionName, 'collectionPrice' => $r->collectionPrice, 'collectionArtistId', $artistId]
-                );
-                //If the track not exist, insert into track table.
-                DB::table('tracks')->firstOrCreate(
-                    ['collectionID' => $collectionId, 'collectionName' => $r->collectionName, 'collectionPrice' => $r->collectionPrice, 'collectionArtistId', $artistId]
-                );
-            }catch (Exception $e){   
-                $status = config('constants.HTTP_BAD');
-                $msg = config('customer.insert_fail');
             }
-            
+        }else{
+            $status = config('customer.HTTP_BAD');
+            $msg = config('customer.empty');
         }
         return \Response::json(['status' => $status, 'msg' => $msg]);
     }

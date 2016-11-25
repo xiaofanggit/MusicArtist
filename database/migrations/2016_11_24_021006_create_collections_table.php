@@ -17,7 +17,7 @@ class CreateCollectionsTable extends Migration
             $table->increments('id');
             $table->integer('collectionId')->index()->unsigned();
             $table->string('collectionName');
-            $table->integer('collectionArtistId');
+            $table->integer('collectionArtistId')->index()->unsigned();
             $table->decimal('collectionPrice', 6, 2);            
             $table->timestamps();
         });

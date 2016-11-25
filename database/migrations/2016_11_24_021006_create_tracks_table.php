@@ -18,14 +18,14 @@ class CreateTracksTable extends Migration
             $table->integer('trackId')->index()->unsigned();
             $table->string('trackName');
             $table->decimal('trackPrice', 5, 2);
-            $table->integer('cllectionId')->index()->unsigned();            
+            $table->integer('collectionId')->index()->unsigned();            
             $table->timestamps();
         });
         Schema::table('tracks', function($table) {
             $table->foreign('collectionId')->references('id')->on('collections')->onDelete('cascade');            
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
