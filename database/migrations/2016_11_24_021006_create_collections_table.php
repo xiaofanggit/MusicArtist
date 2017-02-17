@@ -17,12 +17,12 @@ class CreateCollectionsTable extends Migration
             $table->increments('id');
             $table->integer('collectionId')->index()->unsigned();
             $table->string('collectionName');
-            $table->integer('collectionArtistId')->index()->unsigned();
+            $table->integer('artistId')->index()->unsigned();
             $table->decimal('collectionPrice', 6, 2);            
             $table->timestamps();
         });
         Schema::table('collections', function($table) {
-            $table->foreign('collectionArtistId')->references('id')->on('artists')->onDelete('cascade');            
+            $table->foreign('artistId')->references('id')->on('artists')->onDelete('cascade');
         });
     }
 
