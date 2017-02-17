@@ -14,5 +14,6 @@ return [
     'insert_success' => 'The data was inserted to our DB successfully.',
     'insert_failed' => 'The data was failed to insert our DB.',
     'empty' => 'Empty data.',
+    'MAXIMUM_TRACKS' => 10
 ];
 

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use guzzlehttp\Client;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
+
+use App\Model\Artist;
 /**
  * Webservices controller
  */
@@ -18,9 +22,9 @@ class WebservicesController extends Controller
      * Get music artists list from itunes api
      * For example,https://itunes.apple.com/search?term=jack+johnson
      * 
-     * @para $request: string, users search string
+     * @para string $request string, users search string
      *
-     * return Json data: true: success, false:failed..
+     * return Json data: true: success, false:failed.
      */
     public function getMusicArtists(Request $request)
     {
@@ -42,7 +46,7 @@ class WebservicesController extends Controller
                    
                     //If the collection not exist, insert ino collection table.
                     $collection = \App\Model\Collection::firstOrCreate(
-                        ['collectionId' => $r->collectionId, 'collectionName' => $r->collectionName, 'collectionPrice' => $r->collectionPrice, 'collectionArtistId' => $artist->id]
+                        ['collectionId' => $r->collectionId, 'collectionName' => $r->collectionName, 'collectionPrice' => $r->collectionPrice, 'artistId' => $artist->id]
                     );
                    
                     //If the track not exist, insert into track table.
@@ -61,9 +65,45 @@ class WebservicesController extends Controller
         }
        return \Response::json(['status' => $status, 'msg' => $msg]);
     }
-    
-    public function getArtistTracks(){
-        //Todo
+
+    /**
+     * http://musicartisthomestead.app/webServices/getArtistTracks?artistId=1&page=3
+     * Get artist's tracks
+     * @param Request $request
+     * @return json data
+     */
+    public function getArtistTracks(Request $request){
+        $artistId = $request->get('artistId');
+        $page = $request->input('page');
+        $start = ($page <= 1) ? 0 : ($page-1) * config('customer.MAXIMUM_TRACKS')-1;
+        $artistTotalTackNumber = 0;
+        $artist = new Artist;
+        $response = array();
+        if (Redis::exists('artistTotalTrackNumber')){
+            $artistTotalTrackNumber = Redis::get('artistTotalTrackNumber');
+        }else{
+            try{
+                $artistTotalTrackNumber = $artist->findTotalArtistTracksNumber($artistId);
+                Redis::set('artistTotalTackNumber', $artistTotalTackNumber);
+                $response['status'] = config('customer.HTTP_OK');
+            }catch(Exception $e){
+                $response['status'] = config('customer.HTTP_BAD');
+            }
+        }
+        $response['artistTotalTrackNumber'] = $artistTotalTrackNumber;
+        if (false){//(Redis::exists('artistTracks')){
+            $artistTracks = json_decode(Redis::get('artistTracks'));
+        }else {
+            try {
+                $artistTracks = $artist->getArtistTracks($artistId, $start);
+                Redis::set('artistTracks', json_encode($artistTracks));
+                $response['status'] = config('customer.HTTP_OK');
+            }catch(Exception $e){
+                $response['status'] = config('customer.HTTP_BAD');
+            }
+        }
+        $response['artistTracks'] = $artistTracks;
+        return \Response::json($response);
     }
     
     /**

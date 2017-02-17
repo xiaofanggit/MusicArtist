@@ -9,6 +9,6 @@ class Track extends Model
     public $fillable = ['trackId','trackName','trackPrice','collectionId'];
     public function collections()
     {
-        return $this->belongTo('App\Model\Collection');
+        return $this->belongTo('\App\Model\Collection','collectionId','id');
     } 
 }

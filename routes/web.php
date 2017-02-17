@@ -12,4 +12,5 @@
 */
 
 Route::get('webServices/musicArtist', 'WebservicesController@getMusicArtists');
+Route::get('webServices/getArtistTracks', 'WebservicesController@getArtistTracks');
 Route::get('webServices/deleteTrack', 'WebservicesController@deleteTrack');
