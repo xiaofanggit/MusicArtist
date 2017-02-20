@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('webServices/musicArtist', 'WebservicesController@getMusicArtists');
-Route::get('webServices/getArtistTracks', 'WebservicesController@getArtistTracks');
-Route::get('webServices/deleteTrack', 'WebservicesController@deleteTrack');
+Route::get('/', function(){
+    return view('welcome');
+});
+
+Route::get('foo', function(){
+    return 'hello world!!';
+});
