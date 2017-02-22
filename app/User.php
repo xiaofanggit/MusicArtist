@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function tweets(){
+        return $this->hasMany('App\Tweet');
+    }
+
+    public static function findByUserName($name){
+        return self::where(['name' => $name])->first();
+    }
 }

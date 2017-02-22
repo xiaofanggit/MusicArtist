@@ -18,29 +18,8 @@ class WebserviceTest extends TestCase
                  ->seeJson(
                      [
                          'status' => true,
-                        'artistTotalTrackNumber' => ['total' => 66]
+                        //'artistTotalTrackNumber' => ['total' => 48]
                      ]
                  );
-        /**
-         *
-         * status: true,
-        artistTotalTrackNumber: - {
-        total: 46
-        },
-        artistTracks: - [
-        - {
-        artistName: "Jack Johnson",
-        currency: "USD",
-        country: "USA",
-        collectionName: "To the Sea",
-        collectionPrice: "9.99",
-        id: 44,
-        trackName: "Better Together (feat. Paula Fuga)",
-        trackPrice: "-1.00"
-        },
-         *
-         *
-         *
-         */
     }
 }

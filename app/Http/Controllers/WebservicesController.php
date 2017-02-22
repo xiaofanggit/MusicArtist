@@ -20,7 +20,7 @@ class WebservicesController extends Controller
     }
     /**
      * Get music artists list from itunes api
-     * For example,https://itunes.apple.com/search
+     * For example,https://itunes.apple.com/search?term=jack+johnson
      * http://musicartisthomestead.app/api/webServices/artists?term=jack+johnson
      * 
      * @para string $request string, users search string
@@ -86,9 +86,9 @@ class WebservicesController extends Controller
         }
         $page = $request->input('page');
         $start = ($page <= 1) ? 0 : ($page-1) * config('customer.MAXIMUM_TRACKS')-1;
-        $artistTotalTackNumber = 0;
+        $artistTotalTrackNumber = 0;
         $artist = new Artist;
-        $response = array();
+        $response = $artistTracks = array();
 
         try{
             $artistTotalTrackNumber = $artist->findTotalArtistTracksNumber($artistId);
