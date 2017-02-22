@@ -22,8 +22,8 @@ class ViewAnotherUserTest extends TestCase
                 'password' => bcrypt('12345')
             ]);
         }
-        //$tweet = factory(Tweet::class)->make(['user_id' =>$user->id, 'body' => 'My first tweet']);
-        //$user->tweets()->save($tweet);
+        $tweet = factory(Tweet::class)->make(['user_id' =>$user->id, 'body' => 'My first tweet']);
+        $user->tweets()->save($tweet);
         $this->visit('/johndoe1')->see('My first tweet');
     }
 }

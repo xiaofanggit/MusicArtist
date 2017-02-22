@@ -13,8 +13,8 @@ class UserTest extends TestCase
      */
     public function testAUserCanBeFoundByUserName()
     {
-        $user = App\User::findByUserName('johndoe');
+        $user = App\User::findByUserName('johndoe1');
 
-        $this->assertEquals($user['name'], 'johndoe');
+        $this->assertEquals($user['name'], 'johndoe1');
     }
 }
